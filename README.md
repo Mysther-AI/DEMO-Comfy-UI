@@ -1,4 +1,4 @@
-# 🎬 ComfyUI Myther-AI API Extension
+# 🎬 ComfyUI Mysther-AI API Extension
 
 > AI-powered video stylization pipeline for ComfyUI — download, trim, stylize, generate, and preview animated videos entirely from within ComfyUI.
 
@@ -10,8 +10,8 @@
 
 | Node | Purpose |
 |------|---------|
-| 🔑 **Config API Keys** | Central credential store for Myther-AI API + Wavespeed APIs |
-| 📁 **Project Explorer** | Browse all projects in your Myther-AI API account |
+| 🔑 **Config API Keys** | Central credential store for Mysther-AI API + Wavespeed APIs |
+| 📁 **Project Explorer** | Browse all projects in your Mysther-AI API account |
 | 🎞️ **Video Explorer** | List videos inside a project |
 | 📥 **Subvideo Downloader** | Download subvideo clips with frame preview |
 | ✂️ **Video Trimmer** | Trim clips to AI-model-compatible lengths (FFmpeg) |
@@ -23,13 +23,13 @@
 
 ### Option A — ComfyUI Manager (recommended)
 
-Search **"Myther-AI API"** in ComfyUI Manager and click Install.
+Search **"Mysther-AI API"** in ComfyUI Manager and click Install.
 
 ### Option B — Manual
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/Myther-AI API/DEMO-Comfy-UI.git
+git clone https://github.com/Mysther-AI API/DEMO-Comfy-UI.git
 pip install -r requirements.txt   # or: pip install requests imageio-ffmpeg Pillow
 ```
 
@@ -40,7 +40,7 @@ Restart ComfyUI.
 - **Python** ≥ 3.10
 - **ComfyUI** (latest)
 - **FFmpeg** — installed automatically via `imageio-ffmpeg`, or system-wide
-- **API Keys** — [HechicerIA](https://myther-ai.com) + [Wavespeed](https://wavespeed.ai)
+- **API Keys** — [HechicerIA](https://mysther-ai.com) + [Wavespeed](https://wavespeed.ai)
 
 ## 🚀 Quick Start
 
