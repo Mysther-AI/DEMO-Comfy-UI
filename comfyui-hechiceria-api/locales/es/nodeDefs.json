@@ -1,0 +1,237 @@
+{
+  "HechiceriaAPIConfig": {
+    "display_name": "🔑 Configurar Claves API",
+    "description": "Ingresa aquí tus claves de API de HechicerIA y Wavespeed. Conecta la salida 'api_keys' a todos los demás nodos de HechicerIA para autenticar tus solicitudes.",
+    "inputs": {
+      "hechiceria_api_key": {
+        "name": "Clave API HechicerIA",
+        "tooltip": "Tu clave secreta de la plataforma HechicerIA."
+      },
+      "wavespeed_api_key": {
+        "name": "Clave API Wavespeed",
+        "tooltip": "Tu clave secreta de la plataforma Wavespeed AI."
+      }
+    },
+    "outputs": {
+      "api_keys": {
+        "name": "claves_api",
+        "tooltip": "Paquete de claves autenticadas para los demás nodos."
+      }
+    }
+  },
+  "HechiceriaProjectExplorer": {
+    "display_name": "📁 Explorador de Proyectos",
+    "description": "Obtiene todos los proyectos disponibles en tu cuenta de HechicerIA. Ejecuta el prompt para ver los IDs de tus proyectos en un bloque de texto.",
+    "inputs": {
+      "api_keys": {
+        "name": "claves_api"
+      }
+    },
+    "outputs": {
+      "latest_project_id": {
+        "name": "id_proyecto_reciente",
+        "tooltip": "ID numérico del proyecto más reciente."
+      },
+      "project_list_text": {
+        "name": "lista_proyectos_texto",
+        "tooltip": "Listado completo de proyectos con sus IDs y estados."
+      }
+    }
+  },
+  "HechiceriaVideoExplorer": {
+    "display_name": "🎞️ Explorador de Videos",
+    "description": "Ingresa un 'project_id' del Explorador de Proyectos. Ejecuta el prompt para obtener todos los IDs de video dentro de ese proyecto.",
+    "inputs": {
+      "api_keys": {
+        "name": "claves_api"
+      },
+      "project_id": {
+        "name": "id_proyecto",
+        "tooltip": "ID numérico del proyecto a explorar."
+      }
+    },
+    "outputs": {
+      "latest_video_id": {
+        "name": "id_video_reciente",
+        "tooltip": "ID numérico del video más reciente."
+      },
+      "video_list_text": {
+        "name": "lista_videos_texto",
+        "tooltip": "Listado de videos con sus IDs y cantidad de subvideos."
+      }
+    }
+  },
+  "HechiceriaSubvideoDownloader": {
+    "display_name": "📥 Descargador de Subvideos",
+    "description": "Ingresa IDs válidos de Proyecto y Video para descargar un clip. DEJA EN '0' PARA PAUSAR EL FLUJO y leer tus Exploradores sin gastar créditos.",
+    "inputs": {
+      "api_keys": {
+        "name": "claves_api"
+      },
+      "project_id": {
+        "name": "id_proyecto",
+        "tooltip": "ID del proyecto que contiene el video."
+      },
+      "video_id": {
+        "name": "id_video",
+        "tooltip": "ID del video que contiene los subvideos."
+      },
+      "subvideo_index": {
+        "name": "índice_subvideo",
+        "tooltip": "Posición del subvideo dentro de la lista (empieza en 0)."
+      }
+    },
+    "outputs": {
+      "local_video_path": {
+        "name": "ruta_video_local",
+        "tooltip": "Ruta completa del archivo de video descargado."
+      },
+      "duration": {
+        "name": "duración",
+        "tooltip": "Duración del subvideo en segundos."
+      },
+      "frame_preview": {
+        "name": "vista_previa_fotograma",
+        "tooltip": "Primer fotograma del subvideo como imagen."
+      },
+      "info_text": {
+        "name": "texto_información",
+        "tooltip": "Información detallada del subvideo seleccionado."
+      }
+    }
+  },
+  "HechiceriaVideoTrimmer": {
+    "display_name": "✂️ Recortador de Video",
+    "description": "Los modelos de IA limitan la duración del video. Usa este nodo para recortar el video descargado (ej. de 0.0 a 5.0 segundos) y garantizar compatibilidad.",
+    "inputs": {
+      "local_video_path": {
+        "name": "ruta_video_local",
+        "tooltip": "Ruta del archivo de video a recortar."
+      },
+      "start_time": {
+        "name": "tiempo_inicio",
+        "tooltip": "Segundo donde comienza el recorte."
+      },
+      "max_duration": {
+        "name": "duración_máxima",
+        "tooltip": "Duración máxima del video recortado en segundos."
+      }
+    },
+    "outputs": {
+      "trimmed_video_path": {
+        "name": "ruta_video_recortado",
+        "tooltip": "Ruta del archivo de video recortado."
+      }
+    }
+  },
+  "HechiceriaImageStylizer": {
+    "display_name": "🎨 Estilizador de Imágenes",
+    "description": "Aplica un estilo artístico a una imagen mediante la API de Wavespeed. La imagen estilizada se guarda en tu carpeta de salida.",
+    "inputs": {
+      "api_keys": {
+        "name": "claves_api"
+      },
+      "image": {
+        "name": "imagen",
+        "tooltip": "Imagen de entrada a estilizar."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Descripción del estilo artístico deseado."
+      },
+      "model": {
+        "name": "modelo",
+        "tooltip": "Modelo de IA para la estilización: Nano Banana o Hunyuan."
+      }
+    },
+    "outputs": {
+      "stylized_image": {
+        "name": "imagen_estilizada",
+        "tooltip": "Imagen transformada con el estilo aplicado."
+      },
+      "image_save_path": {
+        "name": "ruta_imagen_guardada",
+        "tooltip": "Ruta del archivo PNG de la imagen estilizada."
+      }
+    }
+  },
+  "HechiceriaVideoGenerator": {
+    "display_name": "🎬 Generador de Video",
+    "description": "Combina una imagen estilizada y un video recortado para generar la animación final. Muestra un reproductor de video directamente en el lienzo.",
+    "inputs": {
+      "api_keys": {
+        "name": "claves_api"
+      },
+      "stylized_image": {
+        "name": "imagen_estilizada",
+        "tooltip": "Imagen estilizada que sirve como referencia visual."
+      },
+      "local_video_path": {
+        "name": "ruta_video_local",
+        "tooltip": "Ruta del video de movimiento/referencia recortado."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Descripción del estilo de animación deseado."
+      },
+      "model": {
+        "name": "modelo",
+        "tooltip": "Modelo de generación de video: Kling o LTX."
+      },
+      "output_subfolder": {
+        "name": "subcarpeta_salida",
+        "tooltip": "Nombre de la subcarpeta donde se guardará el video final."
+      }
+    },
+    "outputs": {
+      "final_video_path": {
+        "name": "ruta_video_final",
+        "tooltip": "Ruta completa del video generado."
+      }
+    }
+  },
+  "HechiceriaVideoPlayer": {
+    "display_name": "▶️ Reproductor de Video",
+    "description": "Carga un video desde una ruta de archivo y muestra un reproductor en el lienzo. Produce los fotogramas individuales como lote de imágenes para procesamiento adicional o conexión con VHS Video Combine.",
+    "inputs": {
+      "video_path": {
+        "name": "ruta_video",
+        "tooltip": "Ruta completa del archivo de video a reproducir."
+      },
+      "force_rate": {
+        "name": "forzar_fps",
+        "tooltip": "Fuerza un framerate específico. Déjalo en 0 para usar el original."
+      },
+      "skip_first_frames": {
+        "name": "saltar_primeros_frames",
+        "tooltip": "Cantidad de fotogramas iniciales a omitir."
+      },
+      "select_every_nth": {
+        "name": "seleccionar_cada_n",
+        "tooltip": "Selecciona 1 de cada N fotogramas (1 = todos)."
+      },
+      "max_frames": {
+        "name": "máximo_frames",
+        "tooltip": "Límite de fotogramas a cargar. 0 = sin límite."
+      }
+    },
+    "outputs": {
+      "frames": {
+        "name": "fotogramas",
+        "tooltip": "Lote de imágenes con los fotogramas del video."
+      },
+      "frame_count": {
+        "name": "cantidad_fotogramas",
+        "tooltip": "Número total de fotogramas extraídos."
+      },
+      "fps": {
+        "name": "fps",
+        "tooltip": "Fotogramas por segundo del video."
+      },
+      "audio_path": {
+        "name": "ruta_audio",
+        "tooltip": "Ruta del archivo WAV de audio extraído (vacío si no hay audio)."
+      }
+    }
+  }
+}
