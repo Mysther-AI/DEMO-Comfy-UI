@@ -93,7 +93,6 @@ Wire the `frames` output to any VHS node (e.g. **Video Combine**) for further co
 comfyui-hechiceria-api/
 ├── __init__.py              # Extension entry point
 ├── nodes.py                 # All node definitions
-├── pyproject.toml           # Package metadata + ComfyUI Registry
 ├── README.md
 ├── locales/
 │   └── es/
