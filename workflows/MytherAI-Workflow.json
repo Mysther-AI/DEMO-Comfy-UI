@@ -1,7 +1,7 @@
 {
   "1": {
     "inputs": {
-      "hechiceria_api_key": "",
+      "mystherai_api_key": "",
       "wavespeed_api_key": ""
     },
     "class_type": "HechiceriaAPIConfig",
